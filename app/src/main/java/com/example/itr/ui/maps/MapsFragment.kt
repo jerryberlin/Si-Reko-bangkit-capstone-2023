@@ -1,4 +1,4 @@
-package com.example.itr.ui
+package com.example.itr.ui.maps
 
 import android.os.Bundle
 import android.view.LayoutInflater

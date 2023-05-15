@@ -11,4 +11,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="image_onboarding">Image OnBoarding</string>
+    <string name="location_error">location error</string>
+    <string name="activate_location">activate location</string>
+
 </resources>

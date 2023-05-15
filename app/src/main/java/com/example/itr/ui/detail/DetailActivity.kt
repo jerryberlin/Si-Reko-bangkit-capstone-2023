@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.itr.R
-import com.example.itr.ui.MapsFragment
+import com.example.itr.ui.maps.MapsFragment
 
 class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
