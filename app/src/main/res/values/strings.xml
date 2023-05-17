@@ -13,5 +13,10 @@
     <string name="image_onboarding">Image OnBoarding</string>
     <string name="location_error">location error</string>
     <string name="activate_location">activate location</string>
+    <string name="icon_map">Icon Map</string>
+    <string name="turn_on_location_service">Turn on Location Service</string>
+    <string name="explore_captivating_tours_within_your_vicinity_and_unveil_the_enchanting_wonders_surrounding_you">Explore captivating tours within your vicinity and unveil the enchanting wonders surrounding you.</string>
+    <string name="later">Later</string>
+    <string name="enable_location">Enable Location</string>
 
 </resources>

@@ -2,8 +2,11 @@ package com.example.itr.ui.home
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
@@ -14,6 +17,7 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -22,9 +26,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.itr.R
 import com.example.itr.databinding.FragmentHomeBinding
+import com.example.itr.databinding.LayoutCustomDialogBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.material.snackbar.Snackbar
 import java.io.IOException
 import java.util.*
 
@@ -108,22 +112,36 @@ class HomeFragment : Fragment() {
                 getLocation()
             }
             else -> {
-                Snackbar
-                    .make(
-                        binding.root,
-                        getString(R.string.location_error),
-                        Snackbar.LENGTH_INDEFINITE
-                    )
-                    .setAction(getString(R.string.activate_location)) {
-                        shouldUpdateLocation = true
-                        Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).also { intent ->
-                            val uri = Uri.fromParts("package", activity?.packageName, null)
-                            intent.data = uri
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(intent)
-                        }
+                val builder = AlertDialog.Builder(requireActivity())
+                val customView = LayoutInflater.from(requireActivity())
+                    .inflate(R.layout.layout_custom_dialog, null)
+                builder.setView(customView)
+                builder.setCancelable(false)
+
+                val myDialog = builder.create()
+                myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                myDialog.show()
+
+                val buttonLater = myDialog.findViewById<Button>(R.id.button_later)
+                val buttonEnable = myDialog.findViewById<Button>(R.id.button_enable)
+
+
+                buttonLater.setOnClickListener {
+                    myDialog.dismiss()
+                    requireActivity().finish()
+                }
+
+                buttonEnable.setOnClickListener {
+                    myDialog.dismiss()
+                    shouldUpdateLocation = true
+                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).also { intent ->
+                        val uri = Uri.fromParts("package", activity?.packageName, null)
+                        intent.data = uri
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
                     }
-                    .show()
+
+                }
             }
         }
     }
