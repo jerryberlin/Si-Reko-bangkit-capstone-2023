@@ -14,6 +14,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.itr.R
 import com.example.itr.databinding.FragmentHomeBinding
-import com.example.itr.databinding.LayoutCustomDialogBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.io.IOException
@@ -60,7 +60,12 @@ class HomeFragment : Fragment() {
         fetchLocation()
 
         binding.btnTodetail.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_detailActivity)
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToDetailActivity(
+                    currentLocation!!.latitude.toFloat(),
+                    currentLocation!!.longitude.toFloat()
+                )
+            )
         }
 
     }
@@ -89,6 +94,12 @@ class HomeFragment : Fragment() {
         task?.addOnSuccessListener { location ->
             if (location != null) {
                 currentLocation = location
+//                val destinationLat = -2.969198
+//                val destinationLon = 104.763651
+//
+//                val distanceInKm = calculateDistance(currentLocation!!.latitude, currentLocation!!.longitude, destinationLat, destinationLon)
+//                println("Jarak antara kedua titik: $distanceInKm km")
+                Log.d("TAG", "getLocation: $currentLocation")
                 getAddressFromLocation(
                     currentLocation?.latitude ?: 0.0,
                     currentLocation?.longitude ?: 0.0

@@ -28,5 +28,12 @@
         android:id="@+id/detailActivity"
         android:name="com.example.itr.ui.detail.DetailActivity"
         android:label="activity_detail"
-        tools:layout="@layout/activity_detail" />
+        tools:layout="@layout/activity_detail" >
+        <argument
+            android:name="lat"
+            app:argType="float" />
+        <argument
+            android:name="long"
+            app:argType="float" />
+    </activity>
 </navigation>
