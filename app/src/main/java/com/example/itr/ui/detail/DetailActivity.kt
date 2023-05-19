@@ -1,12 +1,13 @@
 package com.example.itr.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.navArgs
 import com.example.itr.R
 import com.example.itr.databinding.ActivityDetailBinding
+import com.example.itr.models.LatLong
 import com.example.itr.ui.maps.MapsFragment
 
 class DetailActivity : AppCompatActivity() {
@@ -19,9 +20,10 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val latLong: LatLong = args.latLong
         binding.apply {
-            test.text = args.lat.toString()
-            test2.text = args.long.toString()
+            test.text = latLong.lat.toString()
+            test2.text = latLong.long.toString()
         }
 
         val fragmentManager: FragmentManager = supportFragmentManager
@@ -29,8 +31,8 @@ class DetailActivity : AppCompatActivity() {
 
         val mapsFragment = MapsFragment()
         val bundle = Bundle()
-        bundle.putDouble("lat", args.lat.toDouble())
-        bundle.putDouble("lon", args.long.toDouble())
+        bundle.putDouble("lat", latLong.lat)
+        bundle.putDouble("lon", latLong.long)
         mapsFragment.arguments = bundle
 
         fragmentTransaction.add(R.id.fragment_map, mapsFragment)

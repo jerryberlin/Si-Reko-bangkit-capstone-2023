@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.itr.R
 import com.example.itr.databinding.FragmentHomeBinding
+import com.example.itr.models.LatLong
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.io.IOException
@@ -62,8 +63,10 @@ class HomeFragment : Fragment() {
         binding.btnTodetail.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.actionNavigationHomeToDetailActivity(
-                    currentLocation!!.latitude.toFloat(),
-                    currentLocation!!.longitude.toFloat()
+                    LatLong(
+                        currentLocation!!.latitude,
+                        currentLocation!!.longitude
+                    )
                 )
             )
         }
