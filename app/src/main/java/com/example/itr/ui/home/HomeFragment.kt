@@ -78,14 +78,14 @@ class HomeFragment : Fragment() {
             ActivityCompat.checkSelfPermission
                 (
                 requireActivity(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             getLocation()
         } else {
             requestPermissionLauncher1.launch(
                 arrayOf(
-                    Manifest.permission.ACCESS_COARSE_LOCATION
+                    Manifest.permission.ACCESS_FINE_LOCATION
                 )
             )
         }
@@ -122,7 +122,7 @@ class HomeFragment : Fragment() {
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
         when {
-            permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
+            permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
                 getLocation()
             }
             else -> {
