@@ -2,25 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="210dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="210dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#FFFFFF">
+        app:cardBackgroundColor="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="8dp">
+            android:layout_margin="4dp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageView"
                 android:layout_width="200dp"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:scaleType="fitXY"
                 app:shapeAppearanceOverlay="@style/ImageViewShapeAppearance"
                 tools:src="@tools:sample/avatars" />
@@ -63,7 +64,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:src="@drawable/ic_baseline_location_on_24"
-                    app:tint="#990000"/>
+                    app:tint="@color/maroon"/>
 
                 <TextView
                     android:id="@+id/text_lokasi"
@@ -90,7 +91,7 @@
                         android:layout_height="18dp"
                         android:src="@drawable/baseline_star_rate_24"
                         android:layout_marginStart="8dp"
-                        app:tint="#FFD700"/>
+                        app:tint="@color/yellow_rgb"/>
 
                     <TextView
                         android:id="@+id/text_rating"
