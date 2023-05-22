@@ -19,5 +19,15 @@
     <string name="later">Later</string>
     <string name="enable_location">Enable Location</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt lorem id enim placerat, at semper eros rhoncus. Proin a enim non augue venenatis egestas. Curabitur eu nibh ex. Donec a mi eu nisl lacinia convallis. Sed laoreet neque quis enim tincidunt, nec lacinia justo iaculis. Maecenas vehicula massa vitae elit suscipit, in interdum mi convallis. Sed ut varius elit. Nulla facilisi. Pellentesque pulvinar justo et posuere commodo. Sed laoreet mi enim, ut laoreet turpis lobortis ac. Nunc placerat dui vel facilisis consectetur. Morbi non dignissim purus, sed consequat enim. Vivamus tristique ex ligula, nec fringilla tortor varius eu. Quisque placerat nisi et erat aliquam malesuada.</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="daftar">DAFTAR</string>
+    <string name="sudah_punya_akun">Sudah punya akun?</string>
+    <string name="login_text">login</string>
+    <string name="login">LOGIN</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="daftar_teks">daftar</string>
+    <string name="logo_login">logo login</string>
 
 </resources>
