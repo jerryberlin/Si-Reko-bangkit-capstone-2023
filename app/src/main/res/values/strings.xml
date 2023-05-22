@@ -18,5 +18,6 @@
     <string name="custom_dialog_desc">Explore captivating tours within your vicinity and unveil the enchanting wonders surrounding you.</string>
     <string name="later">Later</string>
     <string name="enable_location">Enable Location</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt lorem id enim placerat, at semper eros rhoncus. Proin a enim non augue venenatis egestas. Curabitur eu nibh ex. Donec a mi eu nisl lacinia convallis. Sed laoreet neque quis enim tincidunt, nec lacinia justo iaculis. Maecenas vehicula massa vitae elit suscipit, in interdum mi convallis. Sed ut varius elit. Nulla facilisi. Pellentesque pulvinar justo et posuere commodo. Sed laoreet mi enim, ut laoreet turpis lobortis ac. Nunc placerat dui vel facilisis consectetur. Morbi non dignissim purus, sed consequat enim. Vivamus tristique ex ligula, nec fringilla tortor varius eu. Quisque placerat nisi et erat aliquam malesuada.</string>
 
 </resources>
