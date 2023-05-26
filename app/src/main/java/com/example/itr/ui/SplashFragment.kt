@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.itr.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,8 +30,12 @@ class SplashFragment : Fragment() {
                 handler.postDelayed({
                     if (isAdded) {
                         if (onBoardingFinished()) {
-                            findNavController().navigate(R.id.action_splashFragment_to_mainActivity)
-                            requireActivity().finish()
+                            if (FirebaseAuth.getInstance().currentUser?.email.isNullOrEmpty()) {
+                                findNavController().navigate(R.id.action_splashFragment_to_accountOptions)
+                            } else {
+                                findNavController().navigate(R.id.action_splashFragment_to_mainActivity)
+                                requireActivity().finish()
+                            }
                         } else {
                             findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
                         }

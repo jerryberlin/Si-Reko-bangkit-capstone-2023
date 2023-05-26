@@ -29,5 +29,8 @@
     <string name="belum_punya_akun">Belum punya akun?</string>
     <string name="daftar_teks">daftar</string>
     <string name="logo_login">logo login</string>
+    <string name="field_nama_kosong">"Field name can\'t be empty"</string>
+    <string name="field_email_kosong">Field email can\'t be empty</string>
+    <string name="field_password_kosong">Field password can\'t be empty</string>
 
 </resources>

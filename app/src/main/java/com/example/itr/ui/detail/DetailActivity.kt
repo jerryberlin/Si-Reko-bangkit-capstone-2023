@@ -21,10 +21,10 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val latLong: LatLong = args.latLong
-        binding.apply {
-            test.text = latLong.lat.toString()
-            test2.text = latLong.long.toString()
-        }
+//        binding.apply {
+//            test.text = latLong.lat.toString()
+//            test2.text = latLong.long.toString()
+//        }
 
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()

@@ -19,6 +19,11 @@
             android:id="@+id/action_splashFragment_to_mainActivity"
             app:destination="@id/mainActivity"
             app:launchSingleTop="true"/>
+        <action
+            android:id="@+id/action_splashFragment_to_accountOptions"
+            app:destination="@id/accountOptions"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -30,9 +35,47 @@
             app:destination="@id/mainActivity"
             app:popUpTo="@id/viewPagerFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_accountOptions"
+            app:destination="@id/accountOptions"
+            app:popUpTo="@id/viewPagerFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.itr.MainActivity"
         android:label="MainActivity" />
+    <fragment
+        android:id="@+id/accountOptions"
+        android:name="com.example.itr.ui.accountoption.AccountOptions"
+        android:label="fragment_account_options"
+        tools:layout="@layout/fragment_account_options" >
+        <action
+            android:id="@+id/action_accountOptions_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_accountOptions_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.itr.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.itr.ui.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>
