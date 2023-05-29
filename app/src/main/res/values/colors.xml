@@ -37,4 +37,9 @@
     <color name="columbia_blue">#BBDED6</color>
     <color name="azureish_white">#DFE5F2</color>
 
+    <color name="primary">#013674</color>
+    <color name="primaryColor">#50C2C9</color>
+    <color name="secondaryColor">#55BBAF</color>
+    <color name="bg">#F8F8F8</color>
+
 </resources>
