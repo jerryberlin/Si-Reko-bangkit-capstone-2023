@@ -41,5 +41,9 @@
     <color name="primaryColor">#50C2C9</color>
     <color name="secondaryColor">#55BBAF</color>
     <color name="bg">#F8F8F8</color>
+    <color name="bg_green">#47B275</color>
+    <color name="bg_skin">#FFEFDA</color>
+
+
 
 </resources>

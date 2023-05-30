@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 
 class SplashFragment : Fragment() {
 
-    private val splashDuration: Long = 3000
+    private val splashDuration: Long = 1500
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(
