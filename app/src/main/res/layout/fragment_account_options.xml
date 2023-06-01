@@ -8,13 +8,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/bg"
         android:layout_height="match_parent">
 
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:background="@drawable/itravelgif"
+            android:background="@drawable/logo_gif"
             app:layout_constraintBottom_toTopOf="@+id/txt_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -26,7 +25,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="350dp"
             android:fontFamily="@font/poppinssemibold"
-            android:text="Welcome to iTravel"
+            android:text="Welcome to Si-Reko"
             android:textColor="@color/black"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
