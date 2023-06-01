@@ -20,6 +20,8 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         val latLong: LatLong = args.latLong
 //        binding.apply {
 //            test.text = latLong.lat.toString()
