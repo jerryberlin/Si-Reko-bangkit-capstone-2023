@@ -1,10 +1,9 @@
 package com.example.itr.ui.accountoption
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.itr.R

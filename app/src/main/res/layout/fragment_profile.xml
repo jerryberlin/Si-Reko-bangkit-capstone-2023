@@ -9,7 +9,6 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_bg_profile"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +21,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:contentDescription="avatar profile"
-            tools:ignore="HardcodedText"
-            tools:src="@tools:sample/avatars" />
+            android:src="@drawable/pp" />
 
         <TextView
             android:id="@+id/text_name"
@@ -33,7 +31,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="23sp"
             android:textStyle="bold"
             tools:text="John Cena" />
@@ -45,23 +43,17 @@
             android:layout_below="@id/text_name"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:textColor="@color/white"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
             android:textSize="16sp"
             tools:text="someone@gmail.com" />
 
-        <TextView
-            android:id="@+id/text_uid"
+        <ProgressBar
+            android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_email"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="monospace"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            tools:text="user-xxxxxx" />
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
@@ -171,28 +163,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/tomato"
+        android:layout_marginBottom="10dp"
         android:text="Logout"
+        android:textColor="@color/black"
         android:textAllCaps="false"
         android:textSize="20sp"
-        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_set_theme"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:id="@+id/text_last_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logout"
-        tools:text="Terakhir login pada 17 Mei 2022 00.00" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
