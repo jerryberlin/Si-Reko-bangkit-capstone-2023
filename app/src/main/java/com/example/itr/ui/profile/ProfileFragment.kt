@@ -2,6 +2,7 @@ package com.example.itr.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,23 +28,29 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val db = Firebase.firestore
-        val userRef = db.collection("user")
-        val currentUserEmail = FirebaseAuth.getInstance().currentUser?.email
+        val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+        val userRef = db.collection("user").document(currentUserId)
 
         val progressBar = binding.progressBar
         progressBar.visibility = View.VISIBLE
 
-        userRef.whereEqualTo("email", currentUserEmail)
+        userRef
             .get()
             .addOnSuccessListener {
-                for (document in it) {
-                    val userData = document.data
+                val userData = it.data
 
+                userData?.let {
                     val name = userData["name"] as String
+                    val email = userData["email"] as String
 
                     binding.textName.text = name
-                    binding.textEmail.text = currentUserEmail
+                    binding.textEmail.text = email
                 }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("TAG", "Error getting user data: ", exception)
+            }
+            .addOnCompleteListener {
                 progressBar.visibility = View.GONE
             }
 
