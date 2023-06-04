@@ -10,6 +10,7 @@
 
     <color name="red">#FF0000</color>
     <color name="yellow">#FFFF00</color>
+    <color name="dyellow">#FFE81B</color>
     <color name="blue">#0000FF</color>
     <color name="pink">#FF00FF</color>
     <color name="light_green">#00FF00</color>

@@ -35,7 +35,7 @@
                     android:src="@drawable/road_trip" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/leftIcon"
+                    android:id="@+id/back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -48,7 +48,7 @@
                     app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/rightIcon"
+                    android:id="@+id/bookmark_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -83,7 +83,7 @@
                 android:maxLines="1"
                 android:text="Pantai Perawan"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="Pantai Perawan" />
 
@@ -160,13 +160,34 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/descriptionTextView"
+                android:id="@+id/btn_rate"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="12dp"
+                android:text="Tap to rate this place"
+                android:textColor="@color/dyellow"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <io.github.glailton.expandabletextview.ExpandableTextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:justificationMode="inter_word"
                 android:text="@string/lorem_ipsum"
                 android:textSize="16sp"
+                app:animDuration="500"
+                app:collapsedLines="4"
                 tools:targetApi="o"
                 tools:text="@string/lorem_ipsum" />
 
@@ -212,8 +233,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
-            app:cardCornerRadius="20dp"
             android:layout_height="300dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

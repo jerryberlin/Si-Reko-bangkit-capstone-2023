@@ -54,11 +54,11 @@ class ProfileFragment : Fragment() {
                 progressBar.visibility = View.GONE
             }
 
-        logout()
+        btnLogoutPressed()
 
     }
 
-    private fun logout() {
+    private fun btnLogoutPressed() {
         binding.btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(requireContext(), OnBoardingActivity::class.java)

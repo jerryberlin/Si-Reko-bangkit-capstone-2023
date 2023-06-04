@@ -73,4 +73,6 @@ dependencies {
     implementation 'com.airbnb.android:lottie:6.0.0'
 
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
+
+    implementation 'io.github.glailton.expandabletextview:expandabletextview:1.0.3'
 }
