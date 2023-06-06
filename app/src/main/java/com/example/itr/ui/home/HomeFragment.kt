@@ -23,11 +23,15 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.itr.R
+import com.example.itr.adapter.DestinationListAdapter
 import com.example.itr.databinding.FragmentHomeBinding
+import com.example.itr.models.DestinationResponseItem
 import com.example.itr.models.LatLong
+import com.example.itr.util.Resource
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.io.IOException
@@ -37,8 +41,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private var currentLocation: Location? = null
     private var fusedLocationClient: FusedLocationProviderClient? = null
-    private lateinit var homeViewModel: HomeViewModel
     private var shouldUpdateLocation: Boolean = false
+    private val homeViewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,13 +53,34 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
+
+        val layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.setHasFixedSize(true)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         homeViewModel.text.observe(requireActivity()) { lattitude ->
             binding.textHome.text = lattitude.toString()
+        }
+
+        homeViewModel.destination.observe(requireActivity()) {
+            when (it) {
+                is Resource.Success -> {
+                    it.data?.let { data ->
+                        setUserData(currentLocation!!, data)
+                    }
+                }
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireActivity(), it.message.toString(), Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is Resource.Loading -> {
+                }
+                else -> Unit
+            }
         }
 
         fetchLocation()
@@ -195,6 +220,14 @@ class HomeFragment : Fragment() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+
+    private fun setUserData(
+        currentLocation: Location,
+        listDestination: List<DestinationResponseItem>
+    ) {
+        val adapter = DestinationListAdapter(currentLocation, listDestination)
+        binding.recyclerView.adapter = adapter
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.itr.util
 
-import kotlin.math.*
+import kotlin.math.acos
+import kotlin.math.cos
+import kotlin.math.sin
 
 fun calculateDistance(
     lat1: Double,

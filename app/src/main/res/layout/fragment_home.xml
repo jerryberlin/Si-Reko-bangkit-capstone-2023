@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="28dp"
     android:layout_marginStart="14dp"
+    android:layout_marginTop="28dp"
     android:layout_marginEnd="14dp"
     tools:context=".ui.home.HomeFragment">
 
@@ -25,14 +25,14 @@
         android:layout_marginStart="3dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Palembang, Sumatera Selatan"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/loc_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/loc_logo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Palembang, Sumatera Selatan" />
 
     <SearchView
         android:id="@+id/searchView2"

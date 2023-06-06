@@ -79,6 +79,7 @@ class DetailActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+            dialog.hide()
         }
     }
 }
