@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="Bagaimana pengalaman liburan anda di Pantai Ancol?"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Bagaimana pengalaman liburan anda di Pantai Ancol?" />
 
     <RatingBar
         android:id="@+id/rating_bar"

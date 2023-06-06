@@ -9,19 +9,58 @@ import com.example.itr.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsFragment : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->
-        val lat = arguments?.getDouble("lat", 0.0)
-        val lon = arguments?.getDouble("lon", 0.0)
+        val latUser = arguments?.getDouble("latUser", 0.0)
+        val lonUser = arguments?.getDouble("lonUser", 0.0)
+        val latDest = arguments?.getDouble("latDest", 0.0)
+        val lonDest = arguments?.getDouble("lonDest", 0.0)
 
-        if (lat != null && lon != null) {
-            val location = LatLng(lat, lon)
-            googleMap.addMarker(MarkerOptions().position(location).title("Marker"))
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+        if (latUser != null && lonUser != null && latDest != null && lonDest != null) {
+            val locationUser = LatLng(latUser, lonUser)
+            val locationDest = LatLng(latDest, lonDest)
+
+            val userMarker = googleMap.addMarker(
+                MarkerOptions()
+                    .position(locationUser)
+                    .title("User")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+            )
+
+            val destMarker = googleMap.addMarker(
+                MarkerOptions()
+                    .position(locationDest)
+                    .title("Destination")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+            )
+
+            googleMap.setOnMarkerClickListener {
+                true // Kembalikan true untuk menandakan bahwa Anda sudah menangani klik pada marker
+            }
+
+            val boundsBuilder = LatLngBounds.Builder()
+            boundsBuilder.include(locationUser)
+            boundsBuilder.include(locationDest)
+            val bounds = boundsBuilder.build()
+
+            val padding = 200 // Jarak padding dari tepi peta dalam piksel
+
+            val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding)
+            googleMap.animateCamera(cameraUpdate)
+
+            googleMap.uiSettings.apply {
+                isScrollGesturesEnabled = false
+                isZoomGesturesEnabled = false
+                isRotateGesturesEnabled = false
+                isTiltGesturesEnabled = false
+                isZoomControlsEnabled = false
+            }
         }
     }
 

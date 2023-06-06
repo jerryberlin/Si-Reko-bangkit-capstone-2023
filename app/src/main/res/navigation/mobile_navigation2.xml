@@ -31,5 +31,8 @@
         <argument
             android:name="latLong"
             app:argType="com.example.itr.models.LatLong" />
+        <argument
+            android:name="destination"
+            app:argType="com.example.itr.models.DestinationItem" />
     </activity>
 </navigation>

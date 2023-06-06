@@ -132,16 +132,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tempat_wisata_sesuai_profil"
                 tools:listitem="@layout/card_item" />
-
-            <Button
-                android:id="@+id/btn_todetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="to detail"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_sesuai_dengan_anda" />
-
+            
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

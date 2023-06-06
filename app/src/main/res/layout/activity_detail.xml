@@ -29,6 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/img_destinasi"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -42,7 +43,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="12dp"
                     android:clickable="true"
-                    android:contentDescription="swipe new image"
+                    android:contentDescription="back button"
                     android:focusable="true"
                     app:backgroundTint="@color/white"
                     app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
@@ -58,8 +59,7 @@
                     android:clickable="true"
                     android:contentDescription="bookmark add"
                     android:focusable="true"
-                    app:srcCompat="@drawable/baseline_bookmark_border_24"
-                    tools:ignore="HardcodedText" />
+                    app:srcCompat="@drawable/baseline_bookmark_border_24" />
             </com.google.android.material.card.MaterialCardView>
         </FrameLayout>
 
@@ -81,7 +81,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Pantai Ancol"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -98,7 +97,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="10 km"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     tools:text="10 km" />
@@ -108,16 +106,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="|"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"
+                    tools:text="|" />
 
                 <TextView
                     android:id="@+id/timeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 menit"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     tools:text="10 menit" />
@@ -138,11 +135,11 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:text="Jakarta, Indonesia"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
-                    app:drawableTint="@color/maroon" />
+                    app:drawableTint="@color/maroon"
+                    tools:text="Jakarta, Indonesia" />
 
                 <TextView
                     android:id="@+id/ratingTextView"
@@ -151,11 +148,11 @@
                     android:layout_alignBaseline="@id/locationTextView"
                     android:layout_alignParentEnd="true"
                     android:gravity="center_vertical"
-                    android:text="4.5"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/baseline_star_rate_24"
-                    app:drawableTint="@color/yellow_rgb" />
+                    app:drawableTint="@color/yellow_rgb"
+                    tools:text="4.5" />
 
             </RelativeLayout>
 
@@ -184,7 +181,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:justificationMode="inter_word"
-                android:text="@string/lorem_ipsum"
                 android:textSize="16sp"
                 app:animDuration="500"
                 app:collapsedLines="4"
@@ -227,8 +223,7 @@
             app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
             app:drawableTint="@color/maroon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infoLayout"
-            tools:text="Lokasi Tujuan" />
+            app:layout_constraintTop_toBottomOf="@+id/infoLayout" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"

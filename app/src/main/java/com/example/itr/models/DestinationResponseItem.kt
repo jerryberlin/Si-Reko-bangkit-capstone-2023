@@ -11,7 +11,7 @@ data class DestinationResponseItem(
     val image: String,
 
     @field:SerializedName("rating")
-    val rating: Any,
+    val rating: Float,
 
     @field:SerializedName("lon")
     val lon: Double,

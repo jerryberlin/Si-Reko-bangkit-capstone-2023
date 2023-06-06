@@ -24,13 +24,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.itr.R
 import com.example.itr.adapter.DestinationListAdapter
 import com.example.itr.databinding.FragmentHomeBinding
 import com.example.itr.models.DestinationResponseItem
-import com.example.itr.models.LatLong
 import com.example.itr.util.Resource
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -84,17 +82,6 @@ class HomeFragment : Fragment() {
         }
 
         fetchLocation()
-
-        binding.btnTodetail.setOnClickListener {
-            findNavController().navigate(
-                HomeFragmentDirections.actionNavigationHomeToDetailActivity(
-                    LatLong(
-                        currentLocation!!.latitude,
-                        currentLocation!!.longitude
-                    )
-                )
-            )
-        }
 
     }
 

@@ -7,10 +7,14 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.itr.databinding.CardItemBinding
+import com.example.itr.models.DestinationItem
 import com.example.itr.models.DestinationResponseItem
+import com.example.itr.models.LatLong
+import com.example.itr.ui.home.HomeFragmentDirections
 import com.example.itr.util.calculateDistance
 import java.io.IOException
 import java.util.*
@@ -39,7 +43,27 @@ class DestinationListAdapter(
             currentLocation.latitude, currentLocation.longitude,
             destination.lat, destination.lon
         )
-        holder.binding.textJarak.text = "$distanceInKm km"
+        val textDistanceInKm = "$distanceInKm km"
+        holder.binding.textJarak.text = textDistanceInKm
+        holder.binding.cardView.setOnClickListener { view ->
+            val action = HomeFragmentDirections.actionNavigationHomeToDetailActivity(
+                LatLong(
+                    currentLocation.latitude,
+                    currentLocation.longitude
+                ),
+                DestinationItem(
+                    destination.placeName,
+                    destination.image,
+                    destination.rating,
+                    destination.lon,
+                    destination.id,
+                    destination.deskripsi,
+                    destination.lat,
+                    textDistanceInKm
+                )
+            )
+            view.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {
