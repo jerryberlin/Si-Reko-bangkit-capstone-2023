@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <TextView
             android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/poppinssemibold"
             android:gravity="center"
-            android:text="Welcome Back!"
+            android:text="@string/welcome_back"
             android:textColor="@color/primary"
             android:textSize="20sp" />
 
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppinsregular"
             android:gravity="center"
-            android:text="Silahkan login untuk melanjutkan"
+            android:text="@string/teks1_login"
             android:textColor="@color/primary"
             android:textSize="15sp" />
 
@@ -45,10 +46,10 @@
                 android:fontFamily="@font/poppinsregular"
                 android:hint="@string/email"
                 android:maxLines="1"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:selectAllOnFocus="true"
-                android:singleLine="true" />
-
+                android:singleLine="true"
+                tools:ignore="Autofill,RtlSymmetry,TextFields" />
 
             <EditText
                 android:id="@+id/passwordEditText"
@@ -59,12 +60,14 @@
                 android:fontFamily="@font/poppinsregular"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:paddingLeft="10dp" />
+                android:paddingStart="10dp"
+                tools:ignore="Autofill,RtlSymmetry" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:gravity="end"
                 android:fontFamily="@font/poppinssemibold"
                 android:text="@string/lupa_password"
                 android:textColor="@color/primary" />
@@ -90,7 +93,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/google_btn" />
+                android:background="@drawable/google_btn"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
@@ -121,6 +125,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 </FrameLayout>

@@ -24,14 +24,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/road_trip" />
+                android:src="@drawable/road_trip"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="20dp"
-                android:text="Bookmark"
+                android:text="@string/bookmark"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -39,7 +40,7 @@
             <SearchView
                 android:id="@+id/searchView2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_gravity="bottom"
                 android:layout_marginStart="7dp"
                 android:layout_marginEnd="7dp"
@@ -65,6 +66,5 @@
         app:layout_constraintTop_toBottomOf="@+id/frameLayout"
         app:spanCount="2"
         tools:listitem="@layout/card_small_item" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
