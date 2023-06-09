@@ -37,7 +37,6 @@ import java.util.*
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private var currentLocation: Location? = null
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private var shouldUpdateLocation: Boolean = false
     private val homeViewModel by viewModels<HomeViewModel>()
@@ -57,32 +56,64 @@ class HomeFragment : Fragment() {
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.setHasFixedSize(true)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fetchLocation()
 
-        homeViewModel.text.observe(requireActivity()) { lattitude ->
-            binding.textHome.text = lattitude.toString()
+        observeTextHomeFromViewModel()
+
+        if (currentLocation != null) {
+            Log.d("TAG", "onViewCreated: location tidak null")
         }
 
-        homeViewModel.destination.observe(requireActivity()) {
+    }
+
+    private fun sendCurrentUserLocation(currentLocation: Location) {
+        homeViewModel.postUserLocation(currentLocation.latitude, currentLocation.longitude)
+//        homeViewModel.postUserLocation(currentLocation.latitude, currentLocation.longitude, FirebaseAuth.getInstance().currentUser!!.uid)
+        homeViewModel.postLocation.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
+                    Toast.makeText(
+                        requireActivity(), it.data.toString(), Toast.LENGTH_SHORT
+                    ).show()
+                    Log.d("TAG", "sendCurrentUserLocation: ${it.data}")
+                    observeDestinationFromViewModel()
+                }
+                is Resource.Error -> {
+
+                }
+                is Resource.Loading -> {}
+                else -> Unit
+            }
+        }
+    }
+
+    private fun observeDestinationFromViewModel() {
+        homeViewModel.destination.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    binding.progressBarTempatTerdekat.visibility = View.INVISIBLE
                     it.data?.let { data ->
                         setUserData(currentLocation!!, data)
                     }
                 }
                 is Resource.Error -> {
+                    binding.progressBarTempatTerdekat.visibility = View.INVISIBLE
                     Toast.makeText(
                         requireActivity(), it.message.toString(), Toast.LENGTH_SHORT
                     ).show()
                 }
                 is Resource.Loading -> {
+                    binding.progressBarTempatTerdekat.visibility = View.VISIBLE
                 }
                 else -> Unit
             }
         }
+    }
 
-        fetchLocation()
-
+    private fun observeTextHomeFromViewModel() {
+        homeViewModel.text.observe(requireActivity()) { latitude ->
+            binding.textHome.text = latitude.toString()
+        }
     }
 
     private fun fetchLocation() {
@@ -105,16 +136,13 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     private fun getLocation() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         val task = fusedLocationClient?.lastLocation
         task?.addOnSuccessListener { location ->
             if (location != null) {
                 currentLocation = location
-//                val destinationLat = -2.969198
-//                val destinationLon = 104.763651
-//
-//                val distanceInKm = calculateDistance(currentLocation!!.latitude, currentLocation!!.longitude, destinationLat, destinationLon)
-//                println("Jarak antara kedua titik: $distanceInKm km")
                 Log.d("TAG", "getLocation: $currentLocation")
+                sendCurrentUserLocation(currentLocation!!)
                 getAddressFromLocation(
                     currentLocation?.latitude ?: 0.0,
                     currentLocation?.longitude ?: 0.0
@@ -172,6 +200,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun getAddressFromLocation(latitude: Double, longitude: Double) {
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
         try {
@@ -190,10 +219,9 @@ class HomeFragment : Fragment() {
 
                     override fun onError(errorMessage: String?) {
                         super.onError(errorMessage)
-                        // Tangani kesalahan di sini jika diperlukan
                     }
                 })
-            } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            } else {
                 val addresses = geocoder.getFromLocation(latitude, longitude, 1)
                 if (addresses!!.isNotEmpty()) {
                     val address = addresses[0]
@@ -217,7 +245,6 @@ class HomeFragment : Fragment() {
         binding.recyclerView.adapter = adapter
     }
 
-
     override fun onResume() {
         super.onResume()
         if (shouldUpdateLocation) {
@@ -225,5 +252,9 @@ class HomeFragment : Fragment() {
             shouldUpdateLocation =
                 false // Setelah memperbarui lokasi, atur shouldUpdateLocation kembali ke false
         }
+    }
+
+    companion object {
+        var currentLocation: Location? = null
     }
 }

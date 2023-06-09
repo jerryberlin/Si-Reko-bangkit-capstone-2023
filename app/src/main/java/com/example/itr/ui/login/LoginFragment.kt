@@ -37,21 +37,9 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply {
-            loginButton.setOnClickListener {
-                val email = emailEditText.text.toString().trim()
-                val password = passwordEditText.text.toString().trim()
-                val imm =
-                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(loginButton.windowToken, 0)
-                viewModel.login(email, password)
+        btnLoginClicked()
 
-            }
-        }
-
-        binding.registerTextView.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-        }
+        textRegisterClicked()
 
         lifecycleScope.launch {
             viewModel.login.collect {
@@ -91,6 +79,26 @@ class LoginFragment : Fragment() {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun textRegisterClicked() {
+        binding.registerTextView.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+    }
+
+    private fun btnLoginClicked() {
+        binding.apply {
+            loginButton.setOnClickListener {
+                val email = emailEditText.text.toString().trim()
+                val password = passwordEditText.text.toString().trim()
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(loginButton.windowToken, 0)
+                viewModel.login(email, password)
+
             }
         }
     }

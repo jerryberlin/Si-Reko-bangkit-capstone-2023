@@ -17,7 +17,11 @@
         android:id="@+id/navigation_bookmark"
         android:name="com.example.itr.ui.bookmark.BookmarkFragment"
         android:label="@string/title_bookmark"
-        tools:layout="@layout/fragment_bookmark" />
+        tools:layout="@layout/fragment_bookmark" >
+        <action
+            android:id="@+id/action_navigation_bookmark_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.itr.ui.profile.ProfileFragment"

@@ -59,6 +59,7 @@
                     android:clickable="true"
                     android:contentDescription="bookmark add"
                     android:focusable="true"
+                    app:borderWidth="0dp"
                     app:srcCompat="@drawable/baseline_bookmark_border_24" />
             </com.google.android.material.card.MaterialCardView>
         </FrameLayout>

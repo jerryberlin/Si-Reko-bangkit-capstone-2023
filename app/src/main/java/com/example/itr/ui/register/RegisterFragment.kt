@@ -38,27 +38,9 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        textLoginClicked()
 
-        binding.loginLink.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-        }
-
-        binding.apply {
-            registerButton.setOnClickListener {
-                val name = nameInput.text.toString().trim()
-                val email = emailInput.text.toString().trim()
-                val password = passwordInput.text.toString().trim()
-                val imm =
-                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(registerButton.windowToken, 0)
-                val user = User(
-                    name,
-                    email
-                )
-                viewModel.createAccountWithEmailAndPassword(user, password)
-            }
-
-        }
+        btnRegisterClicked()
 
         lifecycleScope.launch {
             viewModel.register.collect() {
@@ -107,6 +89,30 @@ class RegisterFragment : Fragment() {
                 }
 
             }
+        }
+    }
+
+    private fun btnRegisterClicked() {
+        binding.apply {
+            registerButton.setOnClickListener {
+                val name = nameInput.text.toString().trim()
+                val email = emailInput.text.toString().trim()
+                val password = passwordInput.text.toString().trim()
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(registerButton.windowToken, 0)
+                val user = User(
+                    name,
+                    email
+                )
+                viewModel.createAccountWithEmailAndPassword(user, password)
+            }
+        }
+    }
+
+    private fun textLoginClicked() {
+        binding.loginLink.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }
 }

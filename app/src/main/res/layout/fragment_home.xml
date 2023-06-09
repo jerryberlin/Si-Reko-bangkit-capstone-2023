@@ -59,6 +59,15 @@
             android:layout_height="0dp"
             android:layout_marginTop="14dp">
 
+            <ProgressBar
+                android:id="@+id/progress_bar_tempat_terdekat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+                app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+                app:layout_constraintStart_toStartOf="@+id/recyclerView"
+                app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
@@ -132,7 +141,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tempat_wisata_sesuai_profil"
                 tools:listitem="@layout/card_item" />
-            
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

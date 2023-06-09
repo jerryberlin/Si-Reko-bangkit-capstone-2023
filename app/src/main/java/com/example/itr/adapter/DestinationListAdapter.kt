@@ -43,7 +43,8 @@ class DestinationListAdapter(
             currentLocation.latitude, currentLocation.longitude,
             destination.lat, destination.lon
         )
-        val textDistanceInKm = "$distanceInKm km"
+        val formattedDistance = String.format("%.2f", distanceInKm)
+        val textDistanceInKm = "$formattedDistance km"
         holder.binding.textJarak.text = textDistanceInKm
         holder.binding.cardView.setOnClickListener { view ->
             val action = HomeFragmentDirections.actionNavigationHomeToDetailActivity(
