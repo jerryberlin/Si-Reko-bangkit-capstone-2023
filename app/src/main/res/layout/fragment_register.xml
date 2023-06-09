@@ -7,20 +7,23 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <ImageView
             android:id="@+id/R_img_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/R_txt_1"
@@ -30,7 +33,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
             android:fontFamily="@font/poppinssemibold"
-            android:text="Welcome Onbard!"
+            android:text="@string/welcome_onbard"
             android:textColor="@color/primary"
             android:textSize="20sp" />
 
@@ -63,8 +66,9 @@
                 android:hint="Name"
                 android:inputType="text"
                 android:maxLines="1"
-                android:paddingLeft="10dp"
-                android:singleLine="true" />
+                android:paddingStart="10dp"
+                android:singleLine="true"
+                tools:ignore="Autofill,HardcodedText,RtlSymmetry" />
 
             <EditText
                 android:id="@+id/email_input"
@@ -76,8 +80,9 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:paddingLeft="10dp"
-                android:singleLine="true" />
+                android:paddingStart="10dp"
+                android:singleLine="true"
+                tools:ignore="Autofill,HardcodedText,RtlSymmetry" />
 
             <EditText
                 android:id="@+id/password_input"
@@ -89,8 +94,9 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:paddingLeft="10dp"
-                android:singleLine="true" />
+                android:paddingStart="10dp"
+                android:singleLine="true"
+                tools:ignore="Autofill,HardcodedText,RtlSymmetry" />
 
         </LinearLayout>
 
@@ -122,7 +128,8 @@
             android:layout_below="@id/msk"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:background="@drawable/google_btn" />
+            android:background="@drawable/google_btn"
+            tools:ignore="ContentDescription" />
 
 
         <LinearLayout
@@ -151,8 +158,6 @@
 
         </LinearLayout>
 
-
     </RelativeLayout>
-
 
 </FrameLayout>

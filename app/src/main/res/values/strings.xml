@@ -32,8 +32,33 @@
     <string name="field_nama_kosong">"Field name can\'t be empty"</string>
     <string name="field_email_kosong">Field email can\'t be empty</string>
     <string name="field_password_kosong">Field password can\'t be empty</string>
-    <string name="lupa_password">Lupa Password</string>
+    <string name="lupa_password">Lupa Password?</string>
     <string name="_daftar">\tDaftar</string>
     <string name="_masuk">\tMasuk</string>
+    <string name="palembang_sumatera_selatan">Palembang, Sumatera Selatan</string>
+    <string name="tempat_wisata_di_dekatmu">Tempat Wisata di Dekatmu!</string>
+    <string name="view_all">View All</string>
+    <string name="tempat_wisata_sesuai_dengan_anda">Tempat Wisata sesuai dengan Anda!</string>
+    <string name="tap_to_rate_this_place">Tap to rate this place</string>
+    <string name="lokasi_sekarang">Lokasi Sekarang</string>
+    <string name="lokasi_tujuan">Lokasi Tujuan</string>
+    <string name="bad">Bad</string>
+    <string name="excellent">Excellent</string>
+    <string name="submit">Submit</string>
+    <string name="welcome_to_si_reko">Welcome to Si-Reko</string>
+    <string name="lorem_2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the ,</string>
+    <string name="register">Register</string>
+    <string name="teks_2_third_screen">Rencanakan petualangan yang sesuai dengan minat dan preferensi Anda. Temukan destinasi yang menarik dan buat kenangan tak terlupakan!</string>
+    <string name="teks1_third_screen">Rencanakan Petualangan Anda</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="beragam_pilihan_destinasi">Beragam Pilihan Destinasi</string>
+    <string name="teks2_second">Lebih dari 100 tempat wisata di sekitar Anda. Selalu ada pilihan yang tepat untuk Anda</string>
+    <string name="welcome_onbard">Welcome Onbard!</string>
+    <string name="logout">Logout</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="teks1_login">Silahkan login untuk melanjutkan</string>
+    <string name="temukan_tempat_wisata_terdekat">Temukan Tempat Wisata Terdekat!</string>
+    <string name="wisata_menarik">Temukan tempat wisata menarik berdasarkan lokasi terdekat Anda</string>
+    <string name="bookmark">Bookmark</string>
 
 </resources>
