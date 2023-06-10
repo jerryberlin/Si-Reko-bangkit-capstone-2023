@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -43,7 +44,7 @@ class RegisterFragment : Fragment() {
         btnRegisterClicked()
 
         lifecycleScope.launch {
-            viewModel.register.collect() {
+            viewModel.register.collect {
                 when (it) {
                     is Resource.Loading -> {
                     }
@@ -112,6 +113,8 @@ class RegisterFragment : Fragment() {
 
     private fun textLoginClicked() {
         binding.loginLink.setOnClickListener {
+            val animation = AnimationUtils.loadAnimation(context, R.anim.slide_out)
+            binding.loginLink.startAnimation(animation)
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }

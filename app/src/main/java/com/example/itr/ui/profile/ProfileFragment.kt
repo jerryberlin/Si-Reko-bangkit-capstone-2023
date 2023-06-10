@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.itr.databinding.FragmentProfileBinding
 import com.example.itr.ui.onboarding.OnBoardingActivity
+import com.example.itr.ui.theme.ThemeActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -55,7 +56,15 @@ class ProfileFragment : Fragment() {
             }
 
         btnLogoutPressed()
+        btnMoreTheme()
 
+    }
+
+    private fun btnMoreTheme() {
+        binding.moreTheme.setOnClickListener {
+            val intentTheme = Intent(requireContext(), ThemeActivity::class.java)
+            startActivity(intentTheme)
+        }
     }
 
     private fun btnLogoutPressed() {
