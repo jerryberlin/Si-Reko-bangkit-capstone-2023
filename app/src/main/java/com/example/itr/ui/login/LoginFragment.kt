@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -85,6 +86,8 @@ class LoginFragment : Fragment() {
 
     private fun textRegisterClicked() {
         binding.registerTextView.setOnClickListener {
+            val animation = AnimationUtils.loadAnimation(context, R.anim.slide_out)
+            binding.registerTextView.startAnimation(animation)
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
@@ -102,5 +105,4 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
 }
