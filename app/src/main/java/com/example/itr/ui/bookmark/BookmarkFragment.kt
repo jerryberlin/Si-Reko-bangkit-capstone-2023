@@ -44,7 +44,7 @@ class BookmarkFragment : Fragment() {
 
     private fun getDataFromFirestore() {
         val db = FirebaseFirestore.getInstance()
-        db.collection("destinations")
+        db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid).collection("destination")
             .whereEqualTo("userId", FirebaseAuth.getInstance().currentUser!!.uid)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
@@ -52,15 +52,16 @@ class BookmarkFragment : Fragment() {
                         return
                     }
 
-                    for (dc: DocumentChange in value?.documentChanges!!) {
+                    if (value!!.isEmpty) binding.tvNoData.visibility =
+                        View.VISIBLE else binding.tvNoData.visibility = View.INVISIBLE
+
+                    for (dc: DocumentChange in value.documentChanges) {
                         if (dc.type == DocumentChange.Type.ADDED) {
                             listDestination.add(dc.document.toObject(MDestination::class.java))
                         }
                     }
                     adapter.notifyDataSetChanged()
-
                 }
-
             })
     }
 

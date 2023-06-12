@@ -11,9 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.itr.databinding.CardItemBinding
-import com.example.itr.models.DestinationItem
-import com.example.itr.models.DestinationResponseItem
-import com.example.itr.models.LatLong
+import com.example.itr.models.*
 import com.example.itr.ui.home.HomeFragmentDirections
 import com.example.itr.util.calculateDistance
 import java.io.IOException
@@ -21,7 +19,7 @@ import java.util.*
 
 class DestinationListAdapter(
     private val currentLocation: Location,
-    private var listDestination: List<DestinationResponseItem>
+    private var listDestination: List<PredictionsItem>
 ) :
     RecyclerView.Adapter<DestinationListAdapter.ListViewHolder>() {
     class ListViewHolder(var binding: CardItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -38,7 +36,8 @@ class DestinationListAdapter(
             .into(holder.binding.imageView)
         holder.binding.textNamaTempat.text = destination.placeName
         holder.binding.textRating.text = destination.rating.toString()
-        translateLocation(destination.lat, destination.lon, holder.binding.textLokasi)
+//        translateLocation(destination.lat, destination.lon, holder.binding.textLokasi)
+        holder.binding.textLokasi.text = destination.city
         val distanceInKm = calculateDistance(
             currentLocation.latitude, currentLocation.longitude,
             destination.lat, destination.lon
@@ -58,7 +57,7 @@ class DestinationListAdapter(
                     destination.rating,
                     destination.lon,
                     destination.id,
-                    destination.deskripsi,
+                    destination.description,
                     destination.lat,
                     textDistanceInKm
                 )
@@ -71,6 +70,7 @@ class DestinationListAdapter(
         return listDestination.size
     }
 
+    @Suppress("DEPRECATION")
     private fun translateLocation(latitude: Double, longitude: Double, textView: TextView) {
         val geocoder = Geocoder(textView.context, Locale.getDefault())
         try {

@@ -60,5 +60,6 @@
     <string name="temukan_tempat_wisata_terdekat">Temukan Tempat Wisata Terdekat!</string>
     <string name="wisata_menarik">Temukan tempat wisata menarik berdasarkan lokasi terdekat Anda</string>
     <string name="bookmark">Bookmark</string>
+    <string name="tidak_ada_destinasi_yang_tersimpan">Tidak ada destinasi yang tersimpan</string>
 
 </resources>

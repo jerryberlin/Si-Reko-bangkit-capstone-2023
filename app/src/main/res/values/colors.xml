@@ -34,6 +34,8 @@
     <color name="Khaki">#F0E68C</color>
 
     <color name="grey">#5B5353</color>
+    <color name="lgrey">#686666</color>
+    <color name="alp_lgrey">#4D686666</color>
     <color name="black_pearl">#4F4C55</color>
     <color name="columbia_blue">#BBDED6</color>
     <color name="azureish_white">#DFE5F2</color>

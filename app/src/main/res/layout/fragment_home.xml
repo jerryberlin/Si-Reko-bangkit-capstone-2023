@@ -49,25 +49,16 @@
         app:layout_constraintTop_toBottomOf="@+id/text_home" />
 
     <androidx.core.widget.NestedScrollView
+        android:layout_marginTop="14dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="14dp">
-
-            <ProgressBar
-                android:id="@+id/progress_bar_tempat_terdekat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
-                app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-                app:layout_constraintStart_toStartOf="@+id/recyclerView"
-                app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+            android:layout_height="0dp">
 
             <TextView
                 android:id="@+id/textView6"
@@ -99,12 +90,33 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
                 tools:listitem="@layout/card_item" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/progress_bar_tempat_terdekat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <include layout="@layout/card_item_shimmer" />
+
+                    <include layout="@layout/card_item_shimmer" />
+
+                    <include layout="@layout/card_item_shimmer" />
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
             <TextView
                 android:id="@+id/tempat_wisata_sesuai_profil"
@@ -116,7 +128,7 @@
                 android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/progress_bar_tempat_terdekat" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -141,6 +153,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tempat_wisata_sesuai_profil"
                 tools:listitem="@layout/card_item" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/progress_bar_sesuai_dengan_anda"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tempat_wisata_sesuai_profil">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <include layout="@layout/card_item_shimmer" />
+
+                    <include layout="@layout/card_item_shimmer" />
+
+                    <include layout="@layout/card_item_shimmer" />
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

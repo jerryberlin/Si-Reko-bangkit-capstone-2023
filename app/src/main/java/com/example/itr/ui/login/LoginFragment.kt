@@ -46,13 +46,18 @@ class LoginFragment : Fragment() {
             viewModel.login.collect {
                 when (it) {
                     is Resource.Loading -> {
-
+                        binding.constraintLayout.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
+                        binding.constraintLayout.visibility = View.INVISIBLE
+                        binding.progressBar.visibility = View.INVISIBLE
                         findNavController().navigate(R.id.action_loginFragment_to_mainActivity)
                         requireActivity().finish()
                     }
                     is Resource.Error -> {
+                        binding.constraintLayout.visibility = View.INVISIBLE
+                        binding.progressBar.visibility = View.INVISIBLE
                         Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
                             .show()
                     }

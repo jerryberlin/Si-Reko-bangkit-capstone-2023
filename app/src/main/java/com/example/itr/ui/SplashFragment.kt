@@ -24,7 +24,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+//private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class SplashFragment : Fragment() {
 
@@ -39,17 +39,17 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val dataStore = requireContext().dataStore
-        settings = ThemePref.getInstance(dataStore)
-        theme = ViewModelProvider(this, ThemeFactory(settings))[ThemeViewModel::class.java]
-
-        theme.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
-            if (isDarkModeActive) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
+//        val dataStore = requireContext().dataStore
+//        settings = ThemePref.getInstance(dataStore)
+//        theme = ViewModelProvider(this, ThemeFactory(settings))[ThemeViewModel::class.java]
+//
+//        theme.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
+//            if (isDarkModeActive) {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//            } else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//            }
+//        }
 
         lifecycleScope.launch {
             withContext(Dispatchers.Main) {

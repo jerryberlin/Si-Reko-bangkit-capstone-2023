@@ -18,7 +18,7 @@ import com.example.itr.ui.theme.ThemeViewModel
 import com.example.setting.ThemePref
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+//private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -31,15 +31,15 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        val settings = ThemePref.getInstance(dataStore)
-        val theme = ViewModelProvider(this, ThemeFactory(settings))[ThemeViewModel::class.java]
-        theme.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
-            if (isDarkModeActive) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
+//        val settings = ThemePref.getInstance(dataStore)
+//        val theme = ViewModelProvider(this, ThemeFactory(settings))[ThemeViewModel::class.java]
+//        theme.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+//            if (isDarkModeActive) {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//            } else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//            }
+//        }
 
         val navView: BottomNavigationView = binding.navView
 

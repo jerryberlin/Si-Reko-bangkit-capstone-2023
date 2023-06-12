@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.itr.R
 import com.example.itr.adapter.DestinationListAdapter
 import com.example.itr.databinding.FragmentHomeBinding
-import com.example.itr.models.DestinationResponseItem
+import com.example.itr.models.PredictionsItem
 import com.example.itr.util.Resource
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -66,50 +66,6 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun sendCurrentUserLocation(currentLocation: Location) {
-        homeViewModel.postUserLocation(currentLocation.latitude, currentLocation.longitude)
-//        homeViewModel.postUserLocation(currentLocation.latitude, currentLocation.longitude, FirebaseAuth.getInstance().currentUser!!.uid)
-        homeViewModel.postLocation.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Success -> {
-                    Toast.makeText(
-                        requireActivity(), it.data.toString(), Toast.LENGTH_SHORT
-                    ).show()
-                    Log.d("TAG", "sendCurrentUserLocation: ${it.data}")
-                    observeDestinationFromViewModel()
-                }
-                is Resource.Error -> {
-
-                }
-                is Resource.Loading -> {}
-                else -> Unit
-            }
-        }
-    }
-
-    private fun observeDestinationFromViewModel() {
-        homeViewModel.destination.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Success -> {
-                    binding.progressBarTempatTerdekat.visibility = View.INVISIBLE
-                    it.data?.let { data ->
-                        setUserData(currentLocation!!, data)
-                    }
-                }
-                is Resource.Error -> {
-                    binding.progressBarTempatTerdekat.visibility = View.INVISIBLE
-                    Toast.makeText(
-                        requireActivity(), it.message.toString(), Toast.LENGTH_SHORT
-                    ).show()
-                }
-                is Resource.Loading -> {
-                    binding.progressBarTempatTerdekat.visibility = View.VISIBLE
-                }
-                else -> Unit
-            }
-        }
-    }
-
     private fun observeTextHomeFromViewModel() {
         homeViewModel.text.observe(requireActivity()) { latitude ->
             binding.textHome.text = latitude.toString()
@@ -142,7 +98,7 @@ class HomeFragment : Fragment() {
             if (location != null) {
                 currentLocation = location
                 Log.d("TAG", "getLocation: $currentLocation")
-                sendCurrentUserLocation(currentLocation!!)
+                sendCurrentUserLocation1(currentLocation!!)
                 getAddressFromLocation(
                     currentLocation?.latitude ?: 0.0,
                     currentLocation?.longitude ?: 0.0
@@ -153,6 +109,31 @@ class HomeFragment : Fragment() {
                     getString(R.string.location_error),
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+        }
+    }
+
+    private fun sendCurrentUserLocation1(currentLocation: Location) {
+        homeViewModel.postUserLocation1(currentLocation.latitude, currentLocation.longitude)
+        homeViewModel.postLocation1.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    binding.progressBarTempatTerdekat.visibility = View.INVISIBLE
+                    Toast.makeText(
+                        requireActivity(), it.data.toString(), Toast.LENGTH_SHORT
+                    ).show()
+                    Log.d("TAG", "sendCurrentUserLocation: ${it.data}")
+                    it.data?.let { data ->
+                        setUserData1(Companion.currentLocation!!, data.predictions)
+                    }
+                }
+                is Resource.Error -> {
+                    binding.progressBarTempatTerdekat.visibility = View.INVISIBLE
+                }
+                is Resource.Loading -> {
+                    binding.progressBarTempatTerdekat.visibility = View.VISIBLE
+                }
+                else -> Unit
             }
         }
     }
@@ -237,9 +218,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setUserData(
+    private fun setUserData1(
         currentLocation: Location,
-        listDestination: List<DestinationResponseItem>
+        listDestination: List<PredictionsItem>
     ) {
         val adapter = DestinationListAdapter(currentLocation, listDestination)
         binding.recyclerView.adapter = adapter

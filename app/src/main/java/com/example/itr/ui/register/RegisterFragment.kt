@@ -47,11 +47,18 @@ class RegisterFragment : Fragment() {
             viewModel.register.collect {
                 when (it) {
                     is Resource.Loading -> {
+                        binding.constraintLayout.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
-                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                        binding.constraintLayout.visibility = View.INVISIBLE
+                        binding.progressBar.visibility = View.INVISIBLE
+                        findNavController().navigate(R.id.action_registerFragment_to_mainActivity)
+                        requireActivity().finish()
                     }
                     is Resource.Error -> {
+                        binding.constraintLayout.visibility = View.INVISIBLE
+                        binding.progressBar.visibility = View.INVISIBLE
                         Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
                             .show()
                     }

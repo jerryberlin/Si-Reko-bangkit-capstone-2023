@@ -26,27 +26,27 @@ class ThemeActivity : AppCompatActivity() {
         _binding = ThemeLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title="Theme"
-
-        val switchTheme: SwitchMaterial = binding.switchTheme
-
-        val pref = ThemePref.getInstance(dataStore)
-        val theme = ViewModelProvider(this, ThemeFactory(pref))[ThemeViewModel::class.java]
-
-        theme.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
-            if (isDarkModeActive) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                switchTheme.isChecked = true
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                switchTheme.isChecked = false
-            }
-        }
-
-        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-            theme.saveThemeSetting(isChecked)
-        }
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.title="Theme"
+//
+//        val switchTheme: SwitchMaterial = binding.switchTheme
+//
+//        val pref = ThemePref.getInstance(dataStore)
+//        val theme = ViewModelProvider(this, ThemeFactory(pref))[ThemeViewModel::class.java]
+//
+//        theme.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+//            if (isDarkModeActive) {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//                switchTheme.isChecked = true
+//            } else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//                switchTheme.isChecked = false
+//            }
+//        }
+//
+//        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+//            theme.saveThemeSetting(isChecked)
+//        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

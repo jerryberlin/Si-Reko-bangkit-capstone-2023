@@ -1,13 +1,17 @@
 package com.example.itr.ui.detail
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
 import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.example.itr.R
@@ -15,7 +19,10 @@ import com.example.itr.databinding.ActivityDetailBinding
 import com.example.itr.models.DestinationItem
 import com.example.itr.models.LatLong
 import com.example.itr.models.MDestination
+import com.example.itr.ui.home.HomeFragment
+import com.example.itr.ui.home.HomeViewModel
 import com.example.itr.ui.maps.MapsFragment
+import com.example.itr.util.Resource
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +31,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val args: DetailActivityArgs by navArgs()
     private lateinit var dialog: BottomSheetDialog
+    private val detailViewModel by viewModels<DetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +73,10 @@ class DetailActivity : AppCompatActivity() {
 
     private fun checkBookmarkExists(mDestination: MDestination) {
         val db = FirebaseFirestore.getInstance()
-        val dbCollection = db.collection("destinations")
+        val dbCollection = db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid).collection("destination")
 
         // Cek apakah destinasi sudah ada dalam bookmark pengguna
         dbCollection.whereEqualTo("id", mDestination.id)
-            .whereEqualTo("userId", mDestination.userId)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 binding.bookmarkButton.setImageResource(R.drawable.ic_baseline_bookmarked)
@@ -102,7 +109,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun saveToFirebase(mDestination: MDestination) {
         val db = FirebaseFirestore.getInstance()
-        val dbCollection = db.collection("destinations")
+        val dbCollection = db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid).collection("destination")
 
         if (mDestination.toString().isNotEmpty()) {
             dbCollection
@@ -110,7 +117,6 @@ class DetailActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     val docId = it.id
                     dbCollection.document(docId)
-//                        .update(hashMapOf("id" to docId) as Map<String, Any>)
                 }
         } else {
 
@@ -136,11 +142,10 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val db = FirebaseFirestore.getInstance()
-        val dbCollection = db.collection("destinations")
+        val dbCollection = db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid).collection("destination")
 
         // Cek apakah destinasi sudah ada dalam bookmark pengguna
         dbCollection.whereEqualTo("id", destination.id)
-            .whereEqualTo("userId", FirebaseAuth.getInstance().currentUser!!.uid)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 if (querySnapshot.isEmpty) {
@@ -193,10 +198,10 @@ class DetailActivity : AppCompatActivity() {
             buttonSubmit?.isEnabled = rBar.rating.toDouble() != 0.0
         }
 
-        btnSubmitPressed(buttonSubmit, ratingBar)
+        btnSubmitPressed(buttonSubmit, ratingBar, destination)
     }
 
-    private fun btnSubmitPressed(buttonSubmit: Button?, ratingBar: RatingBar?) {
+    private fun btnSubmitPressed(buttonSubmit: Button?, ratingBar: RatingBar?, destination: DestinationItem) {
         buttonSubmit?.setOnClickListener {
             if (buttonSubmit.isEnabled) {
                 val ratingValue = ratingBar?.rating
@@ -205,6 +210,26 @@ class DetailActivity : AppCompatActivity() {
                     "Tombol Submit Ditekan! Rating: $ratingValue",
                     Toast.LENGTH_SHORT
                 ).show()
+                detailViewModel.postRating(FirebaseAuth.getInstance().currentUser!!.uid, destination.id, ratingValue!!)
+                detailViewModel.postRating.observe(this){
+                    when (it) {
+                        is Resource.Success -> {
+                            Toast.makeText(
+                                this, it.data.toString(), Toast.LENGTH_SHORT
+                            ).show()
+                            Log.d("TAG", "sendCurrentUserLocation: ${it.data}")
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(
+                                this, it.data.toString(), Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        is Resource.Loading -> {
+
+                        }
+                        else -> Unit
+                    }
+                }
             }
             dialog.hide()
         }

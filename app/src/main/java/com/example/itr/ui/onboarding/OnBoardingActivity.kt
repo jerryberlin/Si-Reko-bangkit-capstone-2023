@@ -15,7 +15,7 @@ import com.example.setting.ThemePref
 import dagger.hilt.android.AndroidEntryPoint
 
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+//private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 @AndroidEntryPoint
 class OnBoardingActivity : AppCompatActivity() {
 
@@ -29,14 +29,14 @@ class OnBoardingActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        val settings = ThemePref.getInstance(dataStore)
-        val theme = ViewModelProvider(this, ThemeFactory(settings))[ThemeViewModel::class.java]
-        theme.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
-            if (isDarkModeActive) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
+//        val settings = ThemePref.getInstance(dataStore)
+//        val theme = ViewModelProvider(this, ThemeFactory(settings))[ThemeViewModel::class.java]
+//        theme.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+//            if (isDarkModeActive) {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//            } else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//            }
+//        }
     }
 }
