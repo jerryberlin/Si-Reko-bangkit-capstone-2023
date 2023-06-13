@@ -18,6 +18,8 @@ data class DestinationItem(
 
     val deskripsi: String,
 
+    val city: String,
+
     val lat: Double,
 
     val distance: String

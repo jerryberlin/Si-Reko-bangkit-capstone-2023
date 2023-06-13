@@ -36,6 +36,7 @@ class BookmarkListAdapter(
             currentLocation.latitude, currentLocation.longitude,
             destination.lat, destination.lon
         )
+        holder.binding.textLokasi.text = destination.city
         val formattedDistance = String.format("%.2f", distanceInKm)
         val textDistanceInKm = "$formattedDistance km"
         holder.binding.textJarak.text = textDistanceInKm
@@ -53,6 +54,7 @@ class BookmarkListAdapter(
                     destination.lon,
                     destination.id,
                     destination.deskripsi,
+                    destination.city,
                     destination.lat,
                     textDistanceInKm
                 )

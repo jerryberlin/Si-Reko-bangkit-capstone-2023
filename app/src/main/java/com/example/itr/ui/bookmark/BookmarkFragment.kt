@@ -1,6 +1,7 @@
 package com.example.itr.ui.bookmark
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,8 @@ class BookmarkFragment : Fragment() {
         binding.rvBookmark1.adapter = adapter
 
         getDataFromFirestore()
+
+        Log.d("TAG", "onViewCreated: bookmark dipanggil")
     }
 
     private fun getDataFromFirestore() {

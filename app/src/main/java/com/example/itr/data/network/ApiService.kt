@@ -1,6 +1,7 @@
 package com.example.itr.data.network
 
 import com.example.itr.models.DestinationResponse
+import com.example.itr.models.DestinationResponse2
 import com.example.itr.models.PostRatingResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -17,4 +18,10 @@ interface ApiService {
     fun postRating(
         @Field("user_id") userId: String, @Field("place_id") placeId: Int, @Field("place_ratings") placeRating: Float
     ): Call<PostRatingResponse>
+
+    @FormUrlEncoded
+    @POST("location/byUser_Id")
+    fun postUserId(
+        @Field("user_id") userId: String
+    ): Call<DestinationResponse2>
 }

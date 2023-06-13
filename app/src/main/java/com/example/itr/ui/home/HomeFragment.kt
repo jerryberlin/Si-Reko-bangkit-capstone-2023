@@ -27,11 +27,14 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.itr.R
 import com.example.itr.adapter.DestinationListAdapter
+import com.example.itr.adapter.DestinationListAdapter2
 import com.example.itr.databinding.FragmentHomeBinding
+import com.example.itr.models.PredictionItem
 import com.example.itr.models.PredictionsItem
 import com.example.itr.util.Resource
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import java.io.IOException
 import java.util.*
 
@@ -40,12 +43,20 @@ class HomeFragment : Fragment() {
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private var shouldUpdateLocation: Boolean = false
     private val homeViewModel by viewModels<HomeViewModel>()
+    private lateinit var contentView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+        if (!::contentView.isInitialized) {
+            binding = FragmentHomeBinding.inflate(inflater, container, false)
+            contentView = binding.root
+
+            fetchLocation()
+
+            observeTextHomeFromViewModel()
+        }
+        return contentView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,9 +67,7 @@ class HomeFragment : Fragment() {
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.setHasFixedSize(true)
 
-        fetchLocation()
-
-        observeTextHomeFromViewModel()
+        Log.d("TAG", "onViewCreated: dipanggil")
 
         if (currentLocation != null) {
             Log.d("TAG", "onViewCreated: location tidak null")
@@ -114,6 +123,32 @@ class HomeFragment : Fragment() {
     }
 
     private fun sendCurrentUserLocation1(currentLocation: Location) {
+        homeViewModel.postUserId(FirebaseAuth.getInstance().currentUser!!.uid)
+        homeViewModel.postUserId1.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    binding.progressBarSesuaiDenganAnda.visibility = View.INVISIBLE
+                    Toast.makeText(
+                        requireActivity(), it.data.toString(), Toast.LENGTH_SHORT
+                    ).show()
+                    Log.d("TAG", "sasaas: ${it.data}")
+                    it.data?.let { data ->
+                        setUserData2(Companion.currentLocation!!, data.prediction)
+                    }
+
+                }
+                is Resource.Error -> {
+                    binding.progressBarSesuaiDenganAnda.visibility = View.INVISIBLE
+                    Toast.makeText(
+                        requireActivity(), it.data.toString(), Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is Resource.Loading -> {
+                    binding.progressBarSesuaiDenganAnda.visibility = View.VISIBLE
+                }
+                else -> Unit
+            }
+        }
         homeViewModel.postUserLocation1(currentLocation.latitude, currentLocation.longitude)
         homeViewModel.postLocation1.observe(viewLifecycleOwner) {
             when (it) {
@@ -224,6 +259,14 @@ class HomeFragment : Fragment() {
     ) {
         val adapter = DestinationListAdapter(currentLocation, listDestination)
         binding.recyclerView.adapter = adapter
+    }
+
+    private fun setUserData2(
+        currentLocation: Location,
+        listDestination: List<PredictionItem>
+    ) {
+        val adapter = DestinationListAdapter2(currentLocation, listDestination)
+        binding.rvSesuaiDenganAnda.adapter = adapter
     }
 
     override fun onResume() {

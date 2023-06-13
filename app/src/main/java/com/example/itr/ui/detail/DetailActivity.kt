@@ -2,7 +2,6 @@ package com.example.itr.ui.detail
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.RatingBar
 import android.widget.TextView
@@ -11,7 +10,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.viewModels
 import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.example.itr.R
@@ -19,8 +17,6 @@ import com.example.itr.databinding.ActivityDetailBinding
 import com.example.itr.models.DestinationItem
 import com.example.itr.models.LatLong
 import com.example.itr.models.MDestination
-import com.example.itr.ui.home.HomeFragment
-import com.example.itr.ui.home.HomeViewModel
 import com.example.itr.ui.maps.MapsFragment
 import com.example.itr.util.Resource
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -55,6 +51,73 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
+    private fun showBottomSheet(destination: DestinationItem) {
+        binding.btnRate.setOnClickListener {
+            val dialogView = layoutInflater.inflate(R.layout.bottomsheetlayout, null)
+            dialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
+            dialog.setContentView(dialogView)
+            dialog.show()
+            showSubmitButton(destination)
+        }
+    }
+
+    private fun showSubmitButton(destination: DestinationItem) {
+        val ratingBar = dialog.findViewById<RatingBar>(R.id.rating_bar)
+        val buttonSubmit = dialog.findViewById<Button>(R.id.btn_submit)
+        val text = dialog.findViewById<TextView>(R.id.textView4)
+
+        text?.text = "Bagaimana pengalaman liburan anda di ${destination.placeName}?"
+
+        ratingBar?.setOnRatingBarChangeListener { rBar, _, _ ->
+            buttonSubmit?.isEnabled = rBar.rating.toDouble() != 0.0
+        }
+
+        btnSubmitPressed(buttonSubmit, ratingBar, destination)
+    }
+
+
+    private fun btnSubmitPressed(
+        buttonSubmit: Button?,
+        ratingBar: RatingBar?,
+        destination: DestinationItem
+    ) {
+        buttonSubmit?.setOnClickListener {
+            if (buttonSubmit.isEnabled) {
+                val ratingValue = ratingBar?.rating
+                Toast.makeText(
+                    this,
+                    "Tombol Submit Ditekan! Rating: $ratingValue",
+                    Toast.LENGTH_SHORT
+                ).show()
+                detailViewModel.postRating(
+                    FirebaseAuth.getInstance().currentUser!!.uid,
+                    destination.id,
+                    ratingValue!!
+                )
+                detailViewModel.postRating.observe(this) {
+                    when (it) {
+                        is Resource.Success -> {
+                            Toast.makeText(
+                                this, it.data.toString(), Toast.LENGTH_SHORT
+                            ).show()
+                            Log.d("TAG", "sendCurrentUserLocation: ${it.data}")
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(
+                                this, it.data.toString(), Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        is Resource.Loading -> {
+
+                        }
+                        else -> Unit
+                    }
+                }
+            }
+            dialog.hide()
+        }
+    }
+
     private fun btnBookmarkPressed(destination: DestinationItem) {
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val mDestination = MDestination(
@@ -64,6 +127,7 @@ class DetailActivity : AppCompatActivity() {
             destination.lon,
             destination.id,
             destination.deskripsi,
+            destination.city,
             destination.lat,
             "0",
             currentUserId
@@ -73,7 +137,9 @@ class DetailActivity : AppCompatActivity() {
 
     private fun checkBookmarkExists(mDestination: MDestination) {
         val db = FirebaseFirestore.getInstance()
-        val dbCollection = db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid).collection("destination")
+        val dbCollection =
+            db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid)
+                .collection("destination")
 
         // Cek apakah destinasi sudah ada dalam bookmark pengguna
         dbCollection.whereEqualTo("id", mDestination.id)
@@ -109,7 +175,9 @@ class DetailActivity : AppCompatActivity() {
 
     private fun saveToFirebase(mDestination: MDestination) {
         val db = FirebaseFirestore.getInstance()
-        val dbCollection = db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid).collection("destination")
+        val dbCollection =
+            db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid)
+                .collection("destination")
 
         if (mDestination.toString().isNotEmpty()) {
             dbCollection
@@ -136,13 +204,16 @@ class DetailActivity : AppCompatActivity() {
             binding.distanceTextView.text = destination.distance
             binding.ratingTextView.text = destination.rating.toString()
             binding.descriptionTextView.text = destination.deskripsi
+            binding.locationTextView.text = destination.city
             Glide.with(applicationContext)
                 .load(destination.image)
                 .into(binding.imgDestinasi)
         }
 
         val db = FirebaseFirestore.getInstance()
-        val dbCollection = db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid).collection("destination")
+        val dbCollection =
+            db.collection("user").document(FirebaseAuth.getInstance().currentUser!!.uid)
+                .collection("destination")
 
         // Cek apakah destinasi sudah ada dalam bookmark pengguna
         dbCollection.whereEqualTo("id", destination.id)
@@ -177,61 +248,4 @@ class DetailActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    private fun showBottomSheet(destination: DestinationItem) {
-        binding.btnRate.setOnClickListener {
-            val dialogView = layoutInflater.inflate(R.layout.bottomsheetlayout, null)
-            dialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
-            dialog.setContentView(dialogView)
-            dialog.show()
-            showSubmitButton(destination)
-        }
-    }
-
-    private fun showSubmitButton(destination: DestinationItem) {
-        val ratingBar = dialog.findViewById<RatingBar>(R.id.rating_bar)
-        val buttonSubmit = dialog.findViewById<Button>(R.id.btn_submit)
-        val text = dialog.findViewById<TextView>(R.id.textView4)
-
-        text?.text = "Bagaimana pengalaman liburan anda di ${destination.placeName}?"
-
-        ratingBar?.setOnRatingBarChangeListener { rBar, _, _ ->
-            buttonSubmit?.isEnabled = rBar.rating.toDouble() != 0.0
-        }
-
-        btnSubmitPressed(buttonSubmit, ratingBar, destination)
-    }
-
-    private fun btnSubmitPressed(buttonSubmit: Button?, ratingBar: RatingBar?, destination: DestinationItem) {
-        buttonSubmit?.setOnClickListener {
-            if (buttonSubmit.isEnabled) {
-                val ratingValue = ratingBar?.rating
-                Toast.makeText(
-                    this,
-                    "Tombol Submit Ditekan! Rating: $ratingValue",
-                    Toast.LENGTH_SHORT
-                ).show()
-                detailViewModel.postRating(FirebaseAuth.getInstance().currentUser!!.uid, destination.id, ratingValue!!)
-                detailViewModel.postRating.observe(this){
-                    when (it) {
-                        is Resource.Success -> {
-                            Toast.makeText(
-                                this, it.data.toString(), Toast.LENGTH_SHORT
-                            ).show()
-                            Log.d("TAG", "sendCurrentUserLocation: ${it.data}")
-                        }
-                        is Resource.Error -> {
-                            Toast.makeText(
-                                this, it.data.toString(), Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        is Resource.Loading -> {
-
-                        }
-                        else -> Unit
-                    }
-                }
-            }
-            dialog.hide()
-        }
-    }
 }

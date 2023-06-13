@@ -9,15 +9,15 @@ import com.bumptech.glide.Glide
 import com.example.itr.databinding.CardItemBinding
 import com.example.itr.models.DestinationItem
 import com.example.itr.models.LatLong
-import com.example.itr.models.PredictionsItem
+import com.example.itr.models.PredictionItem
 import com.example.itr.ui.home.HomeFragmentDirections
 import com.example.itr.util.calculateDistance
 
-class DestinationListAdapter(
+class DestinationListAdapter2(
     private val currentLocation: Location,
-    private var listDestination: List<PredictionsItem>
+    private var listDestination: List<PredictionItem>
 ) :
-    RecyclerView.Adapter<DestinationListAdapter.ListViewHolder>() {
+    RecyclerView.Adapter<DestinationListAdapter2.ListViewHolder>() {
     class ListViewHolder(var binding: CardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -66,4 +66,5 @@ class DestinationListAdapter(
     override fun getItemCount(): Int {
         return listDestination.size
     }
+
 }

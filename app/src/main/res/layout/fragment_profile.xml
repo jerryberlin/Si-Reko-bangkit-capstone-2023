@@ -166,13 +166,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/logout"
-        android:textColor="@color/black"
         android:background="@drawable/rounded_corner"
+        android:text="@string/logout"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_set_theme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

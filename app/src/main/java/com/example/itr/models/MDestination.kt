@@ -13,11 +13,13 @@ data class MDestination(
 
     val deskripsi: String,
 
+    val city: String,
+
     val lat: Double,
 
     val distance: String,
 
     val userId: String
 ) {
-    constructor() : this("", "", 0.0f, 0.0, 0, "", 0.0, "", "")
+    constructor() : this("", "", 0.0f, 0.0, 0, "", "",0.0, "", "")
 }
