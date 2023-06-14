@@ -43,20 +43,12 @@ class HomeFragment : Fragment() {
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private var shouldUpdateLocation: Boolean = false
     private val homeViewModel by viewModels<HomeViewModel>()
-    private lateinit var contentView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        if (!::contentView.isInitialized) {
-            binding = FragmentHomeBinding.inflate(inflater, container, false)
-            contentView = binding.root
-
-            fetchLocation()
-
-            observeTextHomeFromViewModel()
-        }
-        return contentView
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,6 +58,10 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.setHasFixedSize(true)
+
+        fetchLocation()
+
+        observeTextHomeFromViewModel()
 
         Log.d("TAG", "onViewCreated: dipanggil")
 
