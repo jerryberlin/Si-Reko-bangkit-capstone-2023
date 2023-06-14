@@ -48,6 +48,6 @@ Place your Google Maps API Key in ```local.properties```
 ```bash
 MAPS_API_KEY=AIza...
 ```
-Connect Android Studio with Firebase [Connect to Firebase](https://developer.android.com/studio/write/firebase)
+Connect Android Studio with Firebase Authentication and Firestore Database [Connect to Firebase](https://developer.android.com/studio/write/firebase)
 
     
