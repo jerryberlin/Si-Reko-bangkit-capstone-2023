@@ -1,5 +1,5 @@
 # Mobile Development Doccumentation
-Bangkit 2023 Batch 1 product based Capstone Project - Si-Reko - Android.
+[Bangkit 2023 Batch 1 product based Capstone Project - Si-Reko](https://github.com/dts26/Si-Reko-C23-PS399-) - Android.
 
 The source code of Android app of Si-Reko using Kotlin.
 
