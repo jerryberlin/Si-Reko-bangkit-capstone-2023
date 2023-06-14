@@ -124,9 +124,6 @@ class HomeFragment : Fragment() {
             when (it) {
                 is Resource.Success -> {
                     binding.progressBarSesuaiDenganAnda.visibility = View.INVISIBLE
-                    Toast.makeText(
-                        requireActivity(), it.data.toString(), Toast.LENGTH_SHORT
-                    ).show()
                     Log.d("TAG", "sasaas: ${it.data}")
                     it.data?.let { data ->
                         setUserData2(Companion.currentLocation!!, data.prediction)
@@ -150,9 +147,6 @@ class HomeFragment : Fragment() {
             when (it) {
                 is Resource.Success -> {
                     binding.progressBarTempatTerdekat.visibility = View.INVISIBLE
-                    Toast.makeText(
-                        requireActivity(), it.data.toString(), Toast.LENGTH_SHORT
-                    ).show()
                     Log.d("TAG", "sendCurrentUserLocation: ${it.data}")
                     it.data?.let { data ->
                         setUserData1(Companion.currentLocation!!, data.predictions)
