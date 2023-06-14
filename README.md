@@ -1,5 +1,4 @@
 # Mobile Development Doccumentation
-
 Bangkit 2023 Batch 1 product based Capstone Project - Si-Reko - Android.
 
 The source code of Android app of Si-Reko using Kotlin.
@@ -24,13 +23,21 @@ Si-Reko is a ...
 
 
 #### Dependencies
-
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+ - [Jetpack Navigation](https://developer.android.com/jetpack/androidx/releases/navigation)
+ - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+ - [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+ - [Retrofit 2](https://square.github.io/retrofit/)
+ - [OkHttp 3](https://square.github.io/okhttp/)
+ - [Glide](https://github.com/bumptech/glide)
+ - [Android Gif Drawable](https://github.com/koral--/android-gif-drawable)
+ - [Shimmer](https://github.com/facebook/shimmer-android)
+ - [Expandable Text View](https://github.com/glailton/ExpandableTextView)
+ - [Firebase](https://firebase.google.com/docs/android/setup)
+ - [Google Maps](https://developers.google.com/maps/documentation/android-sdk/get-api-key)
+ 
+ 
 ### Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Frame 5](https://github.com/jerryberlin/Si-Reko-bangkit-capstone-2023/assets/72635719/21d1f4f8-3f0f-437c-9e9c-1bbf0c561598)
 
 
 ## Installation
