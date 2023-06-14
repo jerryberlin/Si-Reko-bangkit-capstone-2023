@@ -4,6 +4,8 @@ Bangkit 2023 Batch 1 product based Capstone Project - Si-Reko - Android.
 
 The source code of Android app of Si-Reko using Kotlin.
 
+#### Android Architecture
+![App Screenshot](https://imgur.com/a/TBD0YQW)
 
 ## Introduction
 Si-Reko is a ...
