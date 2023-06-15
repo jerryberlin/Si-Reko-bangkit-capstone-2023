@@ -9,18 +9,20 @@ The source code of Android app of Si-Reko using Kotlin.
 
 
 ## Introduction
-Si-Reko is a ...
+As a country with incredible natural, cultural and historical wealth, Indonesia has great potential to become a popular tourist destination. However, there is a common problem faced by tourists and even Indonesian people themselves, which is the lack of knowledge about attractions, especially those that are less well-known. Our solution aims to address this by providing a personalized recommendation system that can be accessed through a mobile app. By doing so, we hope to increase the exposure of local destinations to a broader audience and help tourists find places that suit their preferences.
+
+
 #### Features
 
-- Splash Screen, 
-- Onboarding Screen, 
-- Login, 
-- Register, 
-- Home, 
-- Bookmark, 
-- Profile, 
-- Detail Screen,
-- Rating, 
+- Splash Screen, a visually appealing screen that welcomes you to Si-Reko.
+- Onboarding Screen, introduces app features and benefits.
+- Login, allows a user to gain access to an application by entering their username and password.
+- Register, create an account to unlock features.
+- Home, central hub for travel recommendations based on location and preferences.
+- Bookmark, save favorite destinations for easy access.
+- Profile, user's information.
+- Detail Screen, comprehensive information about destinations. 
+- Rating, provide feedback and improve recommendations.
 
 
 #### Dependencies
