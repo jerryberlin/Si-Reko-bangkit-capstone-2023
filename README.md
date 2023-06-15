@@ -61,6 +61,6 @@ MAPS_API_KEY=AIza...
 Connect Android Studio with Firebase Authentication and Firestore Database [Connect to Firebase](https://developer.android.com/studio/write/firebase)
 
 ##### If you want to directly try the application, download using the link below:
-![Si-Reko App](https://drive.google.com/drive/u/0/folders/1O8LEtwGCUkmllsrdw3xS7lmIUIBbq2ju)
+[Si-Reko App](https://drive.google.com/drive/u/0/folders/1O8LEtwGCUkmllsrdw3xS7lmIUIBbq2ju)
 
     
