@@ -84,11 +84,6 @@ class DetailActivity : AppCompatActivity() {
         buttonSubmit?.setOnClickListener {
             if (buttonSubmit.isEnabled) {
                 val ratingValue = ratingBar?.rating
-                Toast.makeText(
-                    this,
-                    "Tombol Submit Ditekan! Rating: $ratingValue",
-                    Toast.LENGTH_SHORT
-                ).show()
                 detailViewModel.postRating(
                     FirebaseAuth.getInstance().currentUser!!.uid,
                     destination.id,
@@ -98,7 +93,9 @@ class DetailActivity : AppCompatActivity() {
                     when (it) {
                         is Resource.Success -> {
                             Toast.makeText(
-                                this, it.data.toString(), Toast.LENGTH_SHORT
+                                this,
+                                "Tombol Submit Ditekan! Rating: $ratingValue",
+                                Toast.LENGTH_SHORT
                             ).show()
                             Log.d("TAG", "sendCurrentUserLocation: ${it.data}")
                         }
@@ -149,7 +146,6 @@ class DetailActivity : AppCompatActivity() {
                 if (querySnapshot.isEmpty) {
                     // Destinasi belum ada dalam bookmark, tambahkan ke database
                     saveToFirebase(mDestination)
-                    Toast.makeText(this, "Menambah ke database", Toast.LENGTH_SHORT).show()
                 } else {
                     // Destinasi sudah ada dalam bookmark, hapus dari database
                     val documentSnapshot = querySnapshot.documents[0]
@@ -158,8 +154,6 @@ class DetailActivity : AppCompatActivity() {
                         .delete()
                         .addOnSuccessListener {
                             binding.bookmarkButton.setImageResource(R.drawable.baseline_bookmark_border_24)
-                            Toast.makeText(this, "Menghapus dari database", Toast.LENGTH_SHORT)
-                                .show()
                         }
                         .addOnFailureListener { exception ->
                             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
