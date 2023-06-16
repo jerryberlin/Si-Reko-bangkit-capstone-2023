@@ -63,4 +63,6 @@ Connect Android Studio with Firebase Authentication and Firestore Database [Conn
 ##### If you want to directly try the application, download using the link below:
 [Si-Reko App](https://drive.google.com/drive/u/0/folders/1O8LEtwGCUkmllsrdw3xS7lmIUIBbq2ju)
 
+###### *If the application crashes, that means we turn off the API. Please contact my team or me. Thanks.
+
     
